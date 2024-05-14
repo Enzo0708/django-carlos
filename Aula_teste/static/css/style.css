@@ -1,0 +1,18 @@
+.logo{
+    width: 220px;
+    height: 100px;
+    margin: 0 auto;
+    display: block;
+}
+
+.navbar-nav{
+    margin-left: auto;
+}
+
+.item1{
+    margin-right: 40px;
+}
+
+.item2{
+    margin-right: 50px;
+}
