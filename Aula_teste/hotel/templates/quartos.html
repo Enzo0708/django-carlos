@@ -1,3 +1,4 @@
+{% extends 'index.html' %}
 {% load static %}
 
 {% block title %}
@@ -6,10 +7,18 @@
 
 {% block body %}
     
-    {% for item in dados_hotel %}
+    {% for item in dados_quartos %}
 
-        <h1>{{item.titulo}}</h1>
-        <h3>{{item.descricao}}</h3>
+        <h1>Tipo de Quarto</h1>
+            <h3>{{item.tipo}}</h3>
+        <h1>Descrição</h1>
+            <h3>{{item.descricao}}</h3>
+        <h1> disponibilidade</h1>
+            <h3>{{item.disponibilidade}}</h3>
+        <h1>Valor</h1>
+            <h3>{{item.valor}}</h3>
+        <h1>Imagem</h1>
+            <img src="{% static 'img/quarto.jpg' %}" alt="">
         
     {% endfor %}
         
