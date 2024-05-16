@@ -2,10 +2,10 @@ from django import forms
 
 class FormNome(forms.Form):
     nome = forms.CharField(label='Nome', max_length=20)
-    sobre_nome = forms.CharField(label='Sobrenome', max_length=20)
-    email = forms.EmailField(label='Email', max_length=50)
-    idade = forms.IntegerField(label='Idade')
-    endereco = forms.CharField(label='Endereço', max_length=50)
+    sobrenome = forms.CharField(label='Sobrenome', max_length=20)
+    email = forms.EmailField(label='Email', max_length=100)
+    idade = forms.IntegerField(label='Idade', min_value=0, max_value=100)
+    endereco = forms.CharField(label='Endereco', max_length=200)
     quarto = [
         ('solteiro', 'Quarto Solteiro'),
         ('casal', 'Quarto Casal'),
