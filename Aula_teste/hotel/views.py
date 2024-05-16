@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponse
-from .models import hotel, quarto
+from .models import hotel, quarto, usuario
+from .forms import FormNome
 
 # Create your views here.
 def homepage(request):
@@ -13,3 +14,19 @@ def page_quartos(request):
     dados_quartos = quarto.objects.all()
     context["dados_quartos"] = dados_quartos
     return render(request, 'quartos.html', context)
+
+def nome(request):
+    if request.method == "POST":
+        form = FormNome(request.POST)
+        if form.is_valid():
+
+            var_nome = form.cleaned_data['nome']
+            var_email = form.cleaned_data['email']
+
+            user = usuario(nome=var_nome, email=var_email)
+            user.save()
+
+            return HttpResponse("<h1>thanks</h1>")   
+    else:
+        form = FormNome()
+    return render(request, "nome.html", {"form": form})

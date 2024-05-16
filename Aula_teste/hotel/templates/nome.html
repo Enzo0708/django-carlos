@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+
+{% block title %}
+    HOTEL SENAI - NOME
+{% endblock %}
+
+{% block body %}
+
+    <form action="nome" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
+
+{% endblock %}
