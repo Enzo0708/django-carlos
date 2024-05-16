@@ -22,11 +22,16 @@ def nome(request):
 
             var_nome = form.cleaned_data['nome']
             var_email = form.cleaned_data['email']
+            var_sobre_nome = form.cleaned_data['sobre_nome']
+            var_idade = form.cleaned_data['idade']
+            var_endereco = form.cleaned_data['endereco']
+            var_quarto = form.cleaned_data['quarto']
+            var_data = form.cleaned_data['data']
 
-            user = usuario(nome=var_nome, email=var_email)
+            user = usuario(nome=var_nome, email=var_email, sobre_nome=var_sobre_nome, idade=var_idade, endereco=var_endereco, quarto=var_quarto, data=var_data)
             user.save()
 
             return HttpResponse("<h1>thanks</h1>")   
     else:
         form = FormNome()
-    return render(request, "nome.html", {"form": form})
+    return render(request, "reserva.html", {"form": form})
