@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect, HttpResponse
 from .models import hotel
 from .models import quarto
 from .models import usuario
-from .forms import FormNome, FormCadastro
+from .forms import FormNome, FormCadastro, FormLogin
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login
 
 def reserva(request):
     if request.method == "POST":
@@ -64,3 +65,22 @@ def cadastro(request):
     else:
         form = FormCadastro()
     return render(request, 'cadastro.html', {'form': form})
+
+def login(request):
+    if request.method == "POST":
+        form = FormLogin(request.POST)
+        if form.is_valid():
+
+            var_user = form.cleaned_data['user']
+            var_password = form.cleaned_data['password']
+
+            user = authenticate(username=var_user, password=var_password)
+            if user is not None:
+                return HttpResponse('<h1>Login realizado com sucesso!</h1>')
+                # return redirect('reserva')
+            else:
+                return HttpResponse('<h1>Login ou senha inválidos!</h1>')
+
+    else:
+        form = FormLogin()
+    return render(request, 'login.html', {'form': form})
