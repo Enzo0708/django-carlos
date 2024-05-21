@@ -4,7 +4,8 @@ from .models import quarto
 from .models import usuario
 from .forms import FormNome, FormCadastro, FormLogin
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+from django.contrib.auth.decorators import login_required
 
 def reserva(request):
     if request.method == "POST":
@@ -76,11 +77,16 @@ def login(request):
 
             user = authenticate(username=var_user, password=var_password)
             if user is not None:
-                return HttpResponse('<h1>Login realizado com sucesso!</h1>')
-                # return redirect('reserva')
+                auth_login(request, user)
+                return redirect('/')
             else:
                 return HttpResponse('<h1>Login ou senha inválidos!</h1>')
 
     else:
         form = FormLogin()
     return render(request, 'login.html', {'form': form})
+
+@login_required
+def logout_view(request):
+    auth_logout(request)
+    return redirect('login')

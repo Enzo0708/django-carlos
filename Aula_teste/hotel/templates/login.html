@@ -1,19 +1,29 @@
 {% extends 'index.html' %}
 {% load static %}
-<link rel="stylesheet" href="{ static 'css/style.css' }">
 
-{% block title %}
+{% block title%}
     HOTEL SENAI - LOGIN
 {% endblock %}
 
-{% block body %}
-    
-    <form action="login" method="post">
+{% block body%}
+<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+
+<div class="container">
+    <div class="form-container">
         <h1>Login</h1>
-        {% csrf_token %}
-        {{ form }}
-        <br><br>
-        <input type="submit" value="Submit">
-    </form>
-        
+        <form action="{% url 'login' %}" method="post" class="login-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_user">Usuário:</label>
+                {{ form.user }}
+            </div>
+            <div class="form-group">
+                <label for="id_password">Senha:</label>
+                {{ form.password }}
+            </div>
+            <input type="submit" value="Login" class="submit-button">
+        </form>
+    </div>
+</div>
+
 {% endblock %}

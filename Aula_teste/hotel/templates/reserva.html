@@ -1,7 +1,7 @@
 {% extends 'index.html' %}
 {% load static %}
 
-{% block title%}
+{% block title %}
     HOTEL SENAI - RESERVAR
 {% endblock %}
 
@@ -10,39 +10,46 @@
 
 <div class="container">
     <div class="form-container">
-        <h1>Reserva de Hotel</h1>
-        <form action="reserva" method="post" class="reserva-form">
-            {% csrf_token %}
-            <div>
-                <label for="id_nome">Nome:</label>
-                {{ form.nome }}
+        {% if user.is_authenticated %}
+            <form action="{% url 'reserva' %}" method="post" class="reserva-form">
+                <h1>Reserva de Hotel</h1>
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="id_nome">Nome:</label>
+                    {{ form.nome }}
+                </div>
+                <div class="form-group">
+                    <label for="id_sobrenome">Sobrenome:</label>
+                    {{ form.sobrenome }}
+                </div>
+                <div class="form-group">
+                    <label for="id_email">Email:</label>
+                    {{ form.email }}
+                </div>
+                <div class="form-group">
+                    <label for="id_idade">Idade:</label>
+                    {{ form.idade }}
+                </div>
+                <div class="form-group">
+                    <label for="id_endereco">Endereço:</label>
+                    {{ form.endereco }}
+                </div>
+                <div class="form-group">
+                    <label for="id_quarto_de_escolha">Quarto de Escolha:</label>
+                    {{ form.quarto_de_escolha }}
+                </div>
+                <div class="form-group">
+                    <label for="id_data_da_reserva">Data da Reserva:</label>
+                    {{ form.data_da_reserva }}
+                </div>
+                <input type="submit" value="Submit" class="submit-button">
+            </form>
+        {% else %}
+            <div class="logar">
+                <h1>Reserva de Hotel</h1>
+                <p>Por favor, faça login para reservar um quarto.</p>
             </div>
-            <div>
-                <label for="id_sobrenome">Sobrenome:</label>
-                {{ form.sobrenome }}
-            </div>
-            <div>
-                <label for="id_email">Email:</label>
-                {{ form.email }}
-            </div>
-            <div>
-                <label for="id_idade">Idade:</label>
-                {{ form.idade }}
-            </div>
-            <div>
-                <label for="id_endereco">Endereço:</label>
-                {{ form.endereco }}
-            </div>
-            <div>
-                <label for="id_quarto_de_escolha">Quarto de Escolha:</label>
-                {{ form.quarto_de_escolha }}
-            </div>
-            <div>
-                <label for="id_data_da_reserva">Data da Reserva:</label>
-                {{ form.data_da_reserva }}
-            </div>
-            <input type="submit" value="Submit" class="submit-button">
-        </form>
+        {% endif %}
     </div>
 </div>
 
