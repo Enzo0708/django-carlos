@@ -8,12 +8,14 @@
 
 {% block body %}
     
-    <form action="cadastro" method="post" class="cadastro-form">
-        <h1>Cadastro</h1>
-        {% csrf_token %}
-        {{ form }}
-        <br><br>
-        <input type="submit" value="Submit">
-    </form>
+    <div class="container-cadastro">
+        <form action="cadastro" method="post" class="cadastro-form">
+            <h1>Cadastro</h1>
+            {% csrf_token %}
+            {{ form }}
+            <br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
         
 {% endblock %}

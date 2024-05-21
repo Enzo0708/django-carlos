@@ -1,3 +1,4 @@
+/* ----------------NAV---------------- */
 .logo{
     width: 250px;
     height: 90px;
@@ -18,6 +19,70 @@
     max-height: 380px;
 }
 
-.cadastro-form{
-    margin-left: 80px;
+/* ----------------CADASTRO---------------- */
+input[type="text"],
+input[type="email"],
+select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.cadastro-form {
+    width: 360px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.container-cadastro{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ----------------LOGIN---------------- */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container{
+    width: 360px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
