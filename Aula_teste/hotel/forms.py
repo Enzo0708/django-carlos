@@ -16,4 +16,13 @@ class FormNome(forms.Form):
     quarto_de_escolha = forms.ChoiceField(choices=QUARTOS, label='Quarto de escolha')
     data_da_reserva = forms.DateField(widget=forms.SelectDateWidget, label='Data da reserva')
 
+class FormCadastro(forms.Form):
+    first_name = forms.CharField(label='Nome', max_length=20)
+    last_name = forms.CharField(label='Sobrenome', max_length=20)
+    user = forms.CharField(label='Usuario', max_length=20)
+    email = forms.EmailField(label='Email', max_length=100)
+    password = forms.CharField(label='Senha', widget=forms.PasswordInput)
 
+class FormLogin(forms.Form):
+    user = forms.CharField(label='Usuario', max_length=20)
+    password = forms.CharField(label='Senha', widget=forms.PasswordInput)

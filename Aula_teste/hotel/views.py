@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from .models import hotel
 from .models import quarto
 from .models import usuario
-from .forms import FormNome
+from .forms import FormNome, FormCadastro
+from django.contrib.auth.models import User
 
 def reserva(request):
     if request.method == "POST":
@@ -41,4 +42,25 @@ def page_quartos(request):
     context["dados_quartos"] = dados_quartos
     return render(request,'quartos.html', context)
 
-    
+def cadastro(request):
+    if request.method == "POST":
+        form = FormCadastro(request.POST)
+        if form.is_valid():
+
+            var_first_name = form.cleaned_data['first_name']
+            var_last_name = form.cleaned_data['last_name']
+            var_user = form.cleaned_data['user']
+            var_email = form.cleaned_data['email']
+            var_password = form.cleaned_data['password']
+
+            user = User.objects.create_user(username=var_user, email=var_email, password=var_password)
+            user.first_name = var_first_name
+            user.last_name = var_last_name
+            user.save()
+
+            # return redirect('reserva')
+            return HttpResponse('Cadastro realizado com sucesso!')
+
+    else:
+        form = FormCadastro()
+    return render(request, 'cadastro.html', {'form': form})
